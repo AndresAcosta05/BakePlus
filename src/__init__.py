@@ -1,7 +1,10 @@
 from flask import Flask
+from flask_cors import CORS
 from src.routes import detalle_venta_routes, ingrediente_routes, marca_routes, permiso_routes, produccion_routes, producto_routes, receta_ingrediente_routes, receta_routes, rol_routes, tipo_documento_routes, unidad_medida_routes, usuario_routes, ventas_routes, pages_routes
 
 app = Flask(__name__)
+#appling cors
+cors = CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000"}})
 
 def init_app(config):
     # PASAMOS LA CONFIGURACION
