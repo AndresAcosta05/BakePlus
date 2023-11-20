@@ -15,14 +15,15 @@ class Security:
             payload = {
                 'iat': datetime.datetime.now(tz= cls.tz),
                 'exp': datetime.datetime.now(tz=cls.tz) + datetime.timedelta(hours=1),
-                'user_name': authenticated_user.name,
-                'user': authenticated_user.user
+                'user_name': authenticated_user['nombre_usuario'],
+                'user': authenticated_user['usuario']
             }
 
             return jwt.encode(payload, cls.secret, algorithm='HS256')
         
         except Exception as ex:
             print(ex)
+            return False
     
 
     @classmethod
