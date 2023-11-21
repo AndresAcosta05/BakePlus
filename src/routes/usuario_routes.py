@@ -5,11 +5,7 @@ from src.controllers.usuario_controller import ControladorUsuario
 
 usuario = Blueprint('usuarios_blueprint', __name__)
 
-@usuario.route('/')
-@cross_origin()
-def index_usuarios():
-    return jsonify('Bienvenido a usuarios')
-
+# RUTA PARA LOGIN
 @usuario.route('/login', methods=['POST'])
 @cross_origin()
 def usuario_login():

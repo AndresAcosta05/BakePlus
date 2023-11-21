@@ -1,3 +1,4 @@
+from flask import session
 from src.models.usuario_model import ModelUsuario
 from src.utils.security import Security
 
@@ -5,6 +6,12 @@ class ControladorUsuario:
 
     @classmethod
     def login(cls, user):
+        
+        #primero validamos si existe un token y que ademas sea valido
+        if 'token' in session and Security.verify_token(token=session['token']):
+            return session, 200
+        
+        # en caso de no tener un token y usuario procedemos a crear un token y devolver la data correspondiente
         response = ModelUsuario.md_login_usuario(user=user)
         # modificamos la respuesta para enviar el token
         if response:
@@ -16,4 +23,5 @@ class ControladorUsuario:
             # modificamos la respuesta
             response = authenticated_user
             response['token'] = token
-        return response
+            session['token'] = token
+        return response, 200
