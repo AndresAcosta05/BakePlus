@@ -19,6 +19,7 @@ class ControladorUsuario:
             }
             token = Security.generateToken(authenticated_user= authenticated_user)
             # modificamos la respuesta
+            response = authenticated_user
             response['token'] = token
             # agregamos los parametros de session
             session['token'] = token
