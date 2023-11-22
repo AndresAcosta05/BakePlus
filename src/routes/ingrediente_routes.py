@@ -10,6 +10,7 @@ def index_ingredientes():
     return jsonify('Bienvenido a ingredientes')
 
 @ingrediente.route('/getAll')
+@cross_origin()
 def obtener_ingredientes():
     ingredientes = ingredienteController().cr_obtener_ingredientes()
     return jsonify(ingredientes)

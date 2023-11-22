@@ -18,7 +18,7 @@ def usuario_login():
             return jsonify(False)
 
 # RUTA PARA INSERTAR NUEVO
-@usuario.route('/insertar', methods=['POST'])
+@usuario.route('/insert', methods=['POST'])
 @cross_origin()
 def insertar_usuario():
     if request.method == 'POST':
