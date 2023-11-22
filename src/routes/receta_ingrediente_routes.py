@@ -9,6 +9,12 @@ receta_ingrediente = Blueprint('receta_ingredientes_blueprint', __name__)
 def index_receta_ingredientes():
     return jsonify('Bienvenido a receta_ingredientes')
 
+@receta_ingrediente.route('/getOne/<int:id>')
+@cross_origin()
+def obtener_receta_ingrediente_id(id):
+    ingredientes_receta = receta_ingredienteController().cr_obtener_receta_ingrediente_id(id)
+    return jsonify(ingredientes_receta)
+
 @receta_ingrediente.route('/insert')
 @cross_origin()
 def insertar_receta():

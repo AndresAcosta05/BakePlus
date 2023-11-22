@@ -6,7 +6,6 @@ class ControladorUsuario:
 
     @classmethod
     def login(cls, user):
-        
         #primero validamos si existe un token y que ademas sea valido
         if 'token' in session and Security.verify_token(token=session['token']):
             return session
@@ -20,7 +19,6 @@ class ControladorUsuario:
             }
             token = Security.generateToken(authenticated_user= authenticated_user)
             # modificamos la respuesta
-            response = authenticated_user
             response['token'] = token
             # agregamos los parametros de session
             session['token'] = token

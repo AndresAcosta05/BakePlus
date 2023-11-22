@@ -11,7 +11,22 @@ class recetaController:
     @classmethod
     def cr_obtener_receta_id(cls, id):
         receta = recetaModel().md_obtener_receta_id(id=id)
-        return receta
+        ingredientes_receta = receta_ingredienteController().cr_obtener_receta_ingrediente_id(id_receta=id)
+        
+        full_receta = {
+            'nombre_receta': receta[0],
+            'cantidad_receta': receta[1],
+            'descripcion_receta': receta[2],
+            'receta_ingrediente': []
+        }
+
+        for ingrediente in ingredientes_receta:
+            full_receta['receta_ingrediente'].append({
+                'ingrediente': ingrediente[1],
+                'cantidad_ingrediente': ingrediente[2],
+                'unidad_medida': ingrediente[3]
+            })
+        return full_receta
 
     @classmethod
     def insertar_receta(cls, receta):
