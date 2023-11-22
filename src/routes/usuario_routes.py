@@ -13,7 +13,19 @@ def usuario_login():
         user = request.json
         if 'usuario' and 'contraseña' in user:
             response = ControladorUsuario.login(user=user)
-            return jsonify({'response': response})
+            return jsonify(response)
         else:
-            return jsonify({'response': False})
+            return jsonify(False)
+
+# RUTA PARA INSERTAR NUEVO
+@usuario.route('/insertar', methods=['POST'])
+@cross_origin()
+def insertar_usuario():
+    if request.method == 'POST':
+        usuario = request.json
+        if usuario:
+            response = ControladorUsuario.cr_insertar_usuario(usuario=usuario)
+            return jsonify(response)
+        else:
+            return jsonify(False)
         

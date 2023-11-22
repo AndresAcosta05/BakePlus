@@ -13,4 +13,4 @@ def index_unidad_medidas():
 @cross_origin()
 def obtener_unidades_medidas():
     unidades = unidadController().obtener_unidades_medida()
-    return jsonify({'unidades': unidades})
+    return jsonify(unidades)

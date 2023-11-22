@@ -11,5 +11,5 @@ def index_ingredientes():
 
 @ingrediente.route('/getAll')
 def obtener_ingredientes():
-    response = ingredienteController().cr_obtener_ingredientes()
-    return jsonify({'ingredientes': response})
+    ingredientes = ingredienteController().cr_obtener_ingredientes()
+    return jsonify(ingredientes)

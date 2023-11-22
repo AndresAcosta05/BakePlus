@@ -13,4 +13,4 @@ def index_marcas():
 @cross_origin()
 def obtener_marcas():
     response = marcaController().cr_obtener_marcas()
-    return jsonify({'marcas': response})
+    return jsonify(response)

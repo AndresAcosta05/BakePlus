@@ -9,8 +9,7 @@ class ControladorUsuario:
         
         #primero validamos si existe un token y que ademas sea valido
         if 'token' in session and Security.verify_token(token=session['token']):
-            return session, 200
-        
+            return session
         # en caso de no tener un token y usuario procedemos a crear un token y devolver la data correspondiente
         response = ModelUsuario.md_login_usuario(user=user)
         # modificamos la respuesta para enviar el token
@@ -23,5 +22,18 @@ class ControladorUsuario:
             # modificamos la respuesta
             response = authenticated_user
             response['token'] = token
+            # agregamos los parametros de session
             session['token'] = token
-        return response, 200
+            session['nombre_usuario'] = authenticated_user['nombre_usuario']
+            session['usuario'] = authenticated_user['usuario']
+        return response
+    
+    @classmethod
+    def cr_insertar_usuario(cls, usuario):
+        for value in usuario.values():
+            # validamos que ningun campo venga vacion
+            if not value:
+                return False
+        
+        response = ModelUsuario.md_insertar_usuario(usuario)
+        return response
